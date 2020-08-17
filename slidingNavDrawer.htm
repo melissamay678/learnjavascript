@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sliding Nav Drawer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Super simple pure HTML, CSS, JavaScript sliding nav bar with icons. https://alansimpson.me/html_css/codequickies/">
+    <meta name="author" content="Alan Simpson">
+    <style>
+        /* Google fonts, fontawesome fonts */
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+        header {
+            background: linear-gradient(#1e1e1e, #000000);
+            height: 73px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+        }
+
+        header #burger {
+            position: absolute;
+            left: 14px;
+            top: 32px;
+            opacity: .6;
+            width: 24px;
+        }
+
+        header #burger:hover {
+            opacity: 1;
+            transition: 500ms;
+        }
+
+        nav {
+            font-family: 'Roboto', sans-serif;
+            background: #000;
+            width: 200px;
+            position: fixed;
+            left: 0;
+            top: 72px;
+            z-index: 10000;
+            border-bottom-right-radius: 3px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+            z-index: 9900;
+
+        }
+
+        nav a {
+            box-sizing: border-box;
+            display: block;
+            text-align: left;
+            color: white;
+            text-decoration: none;
+            width: 98%;
+            padding: 1em;
+            opacity: .6;
+            position: relative;
+            font-size: 110%;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            transition: 500ms;
+        }
+
+        /* The icon at the right of each nav item */
+        nav a:after {
+            font-family: FontAwesome;
+            font-size: 160%;
+            position: absolute;
+            right: 10px;
+        }
+
+        /* Icon to the right of each nav link */
+        nav a#home:after {
+            content: "\f015";
+            /* Use syntax below for images rather than font awesome icons */            
+        }
+
+        nav a#option1::after {
+            content: "\f002";                        
+        }
+
+        nav a#option2::after {
+            content: "\f164";            
+        }
+
+        nav a#option3::after {
+            content: "\f1b0";            
+        }
+
+        nav a#option4::after {
+            content: "\f0e7";            
+        }
+
+        /* Nav hiden from view */
+        #nav.hidden {
+            left: -145px;
+            transition: 500ms;
+        }
+
+        /* Nav fully visible */
+        #nav.visible {
+            left: 0;
+            transition: 500ms;
+        }
+
+        article {
+            margin: 82px 24px 100px 62px;
+        }
+
+        article h1 {
+            margin: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            //Event listener for clicking on hamburger menu
+            document.getElementById('burger').addEventListener('click', function () {
+                //Swap visible / hidden styles
+                document.getElementById('nav').className = document.getElementById('nav').className ===
+                    'hidden' ? 'visible' : 'hidden';
+            })
+
+            //Event listener for clicking anywhere on nav to slide it out
+            //of view after used mames a selection.
+            document.getElementById('nav').addEventListener('click', function () {
+                document.getElementById('nav').className = 'hidden';
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="images/hamburger.png" title="Click me" id="burger">
+    </header>
+    <nav id="nav" class="hidden">
+        <!-- Right now the links don't go anywhere because other pages don't exist -->
+        <a href="index.html" id='home' title="Home">Home</a>
+        <a href="#" id="option1" title="Destination 1">Destination 1</a>
+        <a href="#" id="option2" title="Destination 2">Destination 2</a>
+        <a href="#" id="option3" title="Destination 3">Destination 3</a>
+        <a href="#" id="option4" title="Destination 4">Destination 4</a>
+    </nav>
+    <article>
+        <h1>Navigation Drawer</h1>
+        <p>
+            Nav icons shown down the left side all of the time. You can click the burger menu above the nav to slide out the nav and
+            see names.
+        </p>
+    </article>
+</body>
+
+</html>

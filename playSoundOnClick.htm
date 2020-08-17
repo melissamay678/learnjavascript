@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play Sound on Click</title>
+  <meta name="author" content="Alan Simpson - AlanSimpson.me">
+  <!-- Get jQuery library from Google cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var audioElement = document.createElement('audio');
+      //Replace path below with path to your sound file.
+      audioElement.setAttribute('src', 'http://alansimpson.me/javascript/code_quickies/jsound/boing1.wav');
+      //This will make the sound play whenever someone clicks an 
+      // element in your page that has class="audible" in its opening tag.
+      $('.audible').click(function () {
+        audioElement.play();
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Play Sound on Click</h1>
+  <p>
+    <!-- Here clicking a button plays the sound -->
+    <input type="button" value="Click me or the picture" class="audible" />
+  </p>
+  <p style="text-align: center;">
+    <!-- Here clicking an image plays the sound -->
+    <img src="http://alansimpson.me/javascript/code_quickies/jsound/spring.jpg" alt="spring" class="audible" />
+  </p>
+</body>
+</html>

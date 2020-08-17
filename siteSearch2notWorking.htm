@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content = "Coding example for styling Google Custom Search Engine controls - https://AlanSimpson.me">
+    <meta name="Author" content = "Alan Simpson">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search My Site Code</title>
+    <script>
+        //Replace the JavaScrip below with your own code from Google Custom Search
+        (function () {
+            var cx = 'YOUR CODE HERE WILL BE DIFFERENT';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+    <style>
+        /* Style to taste, examples below are just examples. 
+            You can use those same selectors in your own style rules.*/
+        header {
+            background: #1e1e1e;
+            height: 73px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+        }
+
+
+        /* Size and position of div that contains Google custom search */
+        header #srch {
+            width: 240px;
+            position: absolute;
+            right: 120px;
+            top: 14px;
+        }
+
+        /* The actual Google Custom Search box, make border and background transparent */
+        div.cse .gsc-control-cse,
+        .gsc-control-cse {
+            background: transparent !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        /* Hide partially cut-off placeholder text */
+        .gsc-input::placeholder {
+            color: white;
+        }
+
+        /* Move the textbox up a couple of pixels to better align with seach button */
+        .gsc-input {
+            position: relative;
+            top: -2px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="srch">
+            <!-- Tags from Google custom search engine-->
+            <gcse:search></gcse:search>
+        </div>
+    </header>
+
+</body>
+
+</html>

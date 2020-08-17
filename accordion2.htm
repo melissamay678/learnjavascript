@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            //jQuery event handler for clicking any h2 inside the accordion div. 
+            $('.accordion h2').click(function () {
+                //If the item they just clicked is hidden...
+                if ($(this).next('section').is(':hidden')) {
+                    //...hide all dropdown panels.
+                    $('.accordion section').slideUp('fast');
+                }
+                //Toggle the paragraph below the term that was clicked.
+                $(this).next('section').slideToggle('fast');
+            });
+        });
+    </script>
+
+    <style>
+        /* Container for all terms and definitions */
+
+        .accordion {
+            background-color: #eef;
+            width: 800px;
+            max-width: 98%;
+            margin: 1em auto;
+            border: solid 1px #555;
+            border-radius: 5px;
+            font-family: Verdana, Tahoma, Sans-Serif;
+        }
+
+        /* Each item inside the accordion container. */
+
+        .accordion div {
+            box-sizing: border-box;
+        }
+
+        /* Heading at top of each item. */
+
+        .accordion h2 {
+            margin: 0;
+            padding: 8px;
+            background: #aec6cf;
+            font-size: 1.1em;
+        }
+
+        /* Section within each item */
+
+        .accordion section {
+            margin: 0;
+            background-color: white;
+            overflow: hidden;
+            display: none;
+        }
+
+        .accordion section p {
+            margin: 1em;
+        }
+
+        /* hide section under h2 */
+
+        .up {
+            height: 0;
+        }
+
+        /* Extend section to full height */
+
+        .down {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <!-- Start all accordions -->
+        <div class="accordion">
+            <!-- Each item is a div with an h2 first, and section second. -->
+            <div>
+                <h2>First item with clickable top</h2>
+                <section>
+                    <!-- For best results, content in each section should be coded with p or other tags. -->
+                    <p>Content here</p>
+                </section>
+            </div>
+
+            <div>
+                <h2>Second item with clickable top</h2>
+                <section>
+                    <p>Content here</p>
+                </section>
+            </div>
+
+            <div>
+                <h2>Clickable Top the Third</h2>
+                <section>
+                    <p>Content here</p>
+                </section>
+            </div>
+        </div>
+        <!-- End accordion -->
+    </article>
+</body>
+</html>

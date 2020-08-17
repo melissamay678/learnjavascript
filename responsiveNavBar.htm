@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Responsive Nav Bar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- In real life styles and JavaScript would be in external files. 
+        I put everything in one file here so it's easier for you to downlaod and mess with 
+        See https://AlanSimpson.me/how for the whole story. -->
+    <style>
+        /* Import fonts from Google fonts (optional) */
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Pacifico');
+        /* These are commented out and are just for copy/paste to elsewhere in the style sheet.
+        font-family: 'Josefin Sans', sans-serif;
+        font-family: 'Pacifico', cursive; */
+
+        body {
+            margin: 0;
+        }
+
+        /* ------------------------------------------------------- Header style rules */
+
+        header {
+            background: linear-gradient(#6D96FF, #5484FF);
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+        }
+
+        header #logo {
+            height: 80%;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        header h1,
+        header h2 {
+            margin: 0;
+            position: absolute;
+            left: 80px;
+            top: 8px;
+            color: white;
+            text-shadow: 2px 2px black;
+        }
+
+        header h1 {
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        header h2 {
+            font-family: 'Pacifico', cursive;
+            top: 40px;
+        }
+
+        header #hamburger {
+            position: absolute;
+            right: 20px;
+            height: 50%;
+            top: 20%;
+        }
+
+        /* ------------------------------------------------- Main nav bar */
+
+        nav {
+            width: 210px;
+            background: linear-gradient(#5484FF, #2950B2);
+            position: fixed;
+            right: 0;
+            top: 80px;
+            z-index: 10000;
+        }
+
+        nav a {
+            display: block;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-family: 'Josefin Sans', sans-serif;
+            text-shadow: 2px 2px black;
+            font-size: 120%;
+            border-bottom: solid 1px #2950B2;
+        }
+
+        nav a:hover {
+            background: #6E97FF;
+        }
+
+        /*--- These two classes applied and removed by JavaScript code as needed --*/
+
+        #nav.hidden {
+            right: -210px;
+            transition: 500ms;
+        }
+
+        #nav.visible {
+            right: 0;
+            transition: 500ms;
+        }
+
+        /* Wide screens */
+
+        @media screen and (min-width: 500px) {
+            #hamburger {
+                display: none;
+            }
+            #nav {
+                right: 0;
+            }
+        }
+
+        /* Narrow screens */
+
+        @media screen and (max-width: 499px) {
+            #hamburger {
+                display: block;
+            }
+            #nav {
+                right: -210px;
+            }
+        }
+    </style>
+    <script>
+        //Wait for entire page to render before running this code/
+        window.onload = function () {
+            // Tell the hamburger menu to listen for a click (or tab) on the hamburger.
+            document.getElementById("hamburger").addEventListener("click", function () {
+                // Apply one style class or the other depending on what is applied right now.
+                document.getElementById('nav').className = document.getElementById("nav").className == 'visible' ? 'hidden' : 'visible';
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Page header (contains the hamburger menu image) -->
+    <header>
+        <img id="logo" src="logo.png" alt="Your Logo" title="Your Logo">
+        <h1>Main Title</h1>
+        <h2>Subtitle</h2>
+        <img id="hamburger" src="hamburger.png" alt="menu" title="Click for menu">
+    </header>
+    <!-- Nav bar with dummy links just so we have a navbar to work with -->
+    <nav id="nav">
+        <a href="#">Home</a>
+        <a href="#">Placeholder</a>
+        <a href="#">Placeholder</a>
+        <a href="#">Placeholder</a>
+        <a href="#">Placeholder</a>
+        <a href="#">Placeholder</a>
+    </nav>
+</body>
+
+</html>

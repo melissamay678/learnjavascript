@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timer</title>
+    <script>
+      //Set timing interval to global variable name.
+      var clock = setInterval("showtime()", 1000);
+      //Faster Timer - Allows time to be less than one second with var time variable.
+      // var clock = setInterval("showtime()", 10);
+      //Prevents timer from starting as soon as the page opens. Must click start clock.
+      clearInterval(clock);
+      //Function to display current time on the page.
+      function showtime() {
+        var now = new Date();
+        var time = now.toLocaleTimeString();
+        //Faster Timer - Allows time to be less than one second.
+        // var time = now.getHours()+ ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+        document.getElementById("ptime").innerHTML = time;
+      }
+      //Function to stop the timer.
+      function stoptimer() {
+        clearInterval(clock);
+      }
+      //Function to start the timer
+      function starttimer() {
+        clock = setInterval("showtime()", 1000);
+      }
+    </script>
+  </head>
+  <body>
+     <!--Paragraph with an ID to show the time-->
+     <p id="ptime"></p>
+     <p>
+       <!--Button to stop the timer-->
+       <input type="button" value="Stop Clock" onclick="stoptimer()">
+       <br>
+       <br>
+       <!--Button to start the timer-->
+       <input type="button" value="Start Clock" onclick="starttimer()">
+     </p>
+  </body>
+</html>

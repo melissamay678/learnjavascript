@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta name="descripton" content="Pure JavaScript responsive photo slider - AlanSimpson.me" >
+	<meta name="Author" content="Alan Simpson">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Responsive Photo Slider</title>
+	<style>
+		/* Window through which the photos slide */
+		#window {
+			width: 80vw;
+			/* 56.25% is for 16:9 ratio. */
+			padding-top: calc(.5625 * 80vw);
+			position: relative;
+			margin: 0 auto;
+			overflow: hidden;
+			border-radius: 3px;
+			box-shadow: 2px 2px 2px silver;
+		}
+
+		/* Each image in the show */
+		#window img {
+			z-index: 10;
+			position: absolute;
+			top: 0;
+			left: 80vw;
+			width: 80vw;
+			animation-iteration-count: 1;
+		}
+
+		/* Slide current image off to the left out of view */
+		#window img.slideout {
+			left: -80vw;
+			transition-duration: 1s;
+			animation-iteration-count: 1;
+		}
+
+		/* Slide next image into view */
+		#window img.slidein {
+			left: 0;
+			transition-duration: 1s;
+			animation-iteration-count: 1;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="window">
+		<!-- Start wtith the first image already in here set to class='slidein' -->
+		<img src="slides/img01.jpg" class="slidein">
+	</div>
+	<script>
+		// The number of images, won't work if this number isn't right.
+		var number_of_images = 40;
+		// Name of subolder containing images, must be named in sequence img01.jpg, img02.jpg...img10.jpg...
+		var images_folder = "slides"
+
+		// //Create an image element with an id for each images in the folder.
+		for (i = 1; i <= number_of_images; i++) {
+			nextimage = images_folder + '/img' + ('0' + i.toString()).slice(-2) + ".jpg";
+			var img = document.createElement("img");
+			img.src = nextimage;
+			img.id = "img" + ('0' + i.toString()).slice(-2)
+			document.getElementById("window").appendChild(img);
+			//Need to start first image as slidein class or it looks wonky on first image.
+			if (i == 1) {
+				document.getElementById('img01').classList.add('slidein');
+			}
+		}
+		//Just a generic counter for the next() function to determine the next image to show.
+		var counter = 0
+
+		//Slider
+		function slide(i1, i2) {
+			//Slide out the current image
+			document.getElementById(i1).className = "slideout";
+			//Slide in the next image
+			document.getElementById(i2).className = "slidein";
+			//Wait, then recycle the last slid-out image over to the pile to the left of #window
+			setTimeout(function () {
+				hideit(i1)
+			}, 1100);
+		}
+
+		//Removing the class name moves it back to the left of the show where it's hidden. 
+		function hideit(nm) {
+			document.getElementById(nm).className = "";
+		}
+
+		//Figures out which image to show next, restarts at 1 after number_of_images reached.
+		function next() {
+			//Increment the counter (or restart at 1)
+			counter = counter == number_of_images ? 1 : counter + 1;
+			//Detering current and next image numbers.
+			var currentimage = counter;
+			nextimage = currentimage + 1 > number_of_images ? 1 : currentimage + 1;
+			//Generate the id name, needs leading zero if < 10.
+			thisimgid = "img" + ('0' + currentimage.toString()).slice(-2);
+			nextimageid = "img" + ('0' + nextimage.toString()).slice(-2);
+			//Pass the ids of the images to the slide function.
+			slide(thisimgid, nextimageid);
+		}
+
+		//Once all the DOM content is loaded, start an interval timer that repeats every x milliseconds.
+		document.addEventListener("DOMContentLoaded", function (event) {
+			var timer = setInterval(function () {
+				next()
+			}, 3000);
+		});
+	</script>
+</body>
+</html>
